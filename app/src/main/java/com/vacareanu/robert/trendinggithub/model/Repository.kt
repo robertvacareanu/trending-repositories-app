@@ -7,6 +7,7 @@ import java.util.*
  */
 data class Repository(var url: String,
                       val name: String,
+                      val description: String,
                       val created: Date,
                       val updated: Date,
                       val size: Int,
