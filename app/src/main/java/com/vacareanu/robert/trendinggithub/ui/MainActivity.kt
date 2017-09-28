@@ -6,12 +6,13 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import com.vacareanu.robert.trendinggithub.ui.repositories.GithubTrendsRV
 import com.vacareanu.robert.trendinggithub.R
 import com.vacareanu.robert.trendinggithub.makeToast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, GithubTrendsRV.OnGithubTrendsRVInteractionListener, FavoritesRV.OnFavoritesInteractionListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +25,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+        if(savedInstanceState==null) {
+            nav_view.setCheckedItem(R.id.nav_trending)
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, GithubTrendsRV.newInstance()).commit()
+        }
     }
 
     override fun onBackPressed() {
@@ -40,9 +45,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_favorites -> {
                 // Handle the camera action
                 makeToast("Favorites")
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, FavoritesRV.newInstance()).commit()
             }
             R.id.nav_trending -> {
                 makeToast("Trending")
+                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, GithubTrendsRV.newInstance()).commit()
             }
         }
 
