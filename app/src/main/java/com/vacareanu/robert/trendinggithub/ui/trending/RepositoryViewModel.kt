@@ -16,7 +16,6 @@ class RepositoryViewModel(application: Application): AndroidViewModel(applicatio
     var repositories: MutableLiveData<List<Repository>> = MutableLiveData()
 
     init {
-        Log.v("RVM", "Init")
         repositories.value = listOf(
                 randomRepo(), randomRepo()
         )

@@ -1,4 +1,4 @@
-package com.vacareanu.robert.trendinggithub.ui
+package com.vacareanu.robert.trendinggithub.ui.favorites
 
 import android.content.Context
 import android.os.Bundle

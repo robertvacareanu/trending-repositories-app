@@ -9,6 +9,7 @@ import android.view.MenuItem
 import com.vacareanu.robert.trendinggithub.ui.repositories.GithubTrendsRV
 import com.vacareanu.robert.trendinggithub.R
 import com.vacareanu.robert.trendinggithub.makeToast
+import com.vacareanu.robert.trendinggithub.ui.favorites.FavoritesRV
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 

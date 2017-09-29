@@ -29,6 +29,9 @@ class GithubTrendsRVAdapter(val context: Context) : RecyclerView.Adapter<GithubT
             title = view.findViewById(R.id.repo_title)
             description = view.findViewById(R.id.repo_description)
             heart = view.findViewById(R.id.heart)
+            heart.setOnClickListener {
+//                clickedView: View? ->  clickedView?.
+            }
         }
     }
 
