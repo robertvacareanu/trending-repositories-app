@@ -1,6 +1,5 @@
 package com.vacareanu.robert.trendinggithub.ui.repositories
 
-import android.content.Context
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -14,7 +13,7 @@ import com.vacareanu.robert.trendinggithub.model.Repository
 /**
  * Created by robert on 9/27/17.
  */
-class GithubTrendsRVAdapter(val context: Context) : RecyclerView.Adapter<GithubTrendsRVAdapter.GithubTrendsViewHolder>() {
+class GithubTrendsRVAdapter: RecyclerView.Adapter<GithubTrendsRVAdapter.GithubTrendsViewHolder>() {
 
 
     private var repositories: List<out Repository>? = null
@@ -24,15 +23,14 @@ class GithubTrendsRVAdapter(val context: Context) : RecyclerView.Adapter<GithubT
         var title: TextView
         var description: TextView
         var heart: ImageView
+
         init {
             stars = view.findViewById(R.id.stars)
             title = view.findViewById(R.id.repo_title)
             description = view.findViewById(R.id.repo_description)
             heart = view.findViewById(R.id.heart)
-            heart.setOnClickListener {
-//                clickedView: View? ->  clickedView?.
-            }
         }
+
     }
 
     fun setRepositories(repo: List<out Repository>) {
@@ -54,13 +52,15 @@ class GithubTrendsRVAdapter(val context: Context) : RecyclerView.Adapter<GithubT
         }
     }
 
+
+
     override fun onBindViewHolder(holder: GithubTrendsViewHolder?, position: Int) {
 
         val repo = repositories!![position]
         holder?.let {
-            it.title.text=repo.name
-            it.description.text=repo.description
-            it.stars.text=repo.stars.toString()
+            it.title.text = repo.name
+            it.description.text = repo.description
+            it.stars.text = repo.stars.toString()
         }
 
     }

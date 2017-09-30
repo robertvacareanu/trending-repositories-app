@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,12 +40,18 @@ class GithubTrendsRV : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater!!.inflate(R.layout.fragment_github_trends_rv, container, false)
         repositoriesRV = view.findViewById(R.id.repositories_rv)
-        adapter = GithubTrendsRVAdapter(activity)
+        adapter = GithubTrendsRVAdapter()
         repositoriesRV.layoutManager = LinearLayoutManager(activity)
         repositoriesRV.adapter = adapter
         val itemCall = object : RepositoryViewClickListener.ItemClickCallback {
             override fun onItemClick(clickedView: View, position: Int) {
-                activity.makeToast("Clicked")
+                Log.v("GTRV", "Clicked")
+            }
+
+            override fun onHeartClick(heart: View, position: Int) {
+                Log.v("GTRV",
+                        "Heart clicked of ${ViewModelProviders.of(activity).get(RepositoryViewModel::class.java).repositories.value!![position].name}"
+                )
             }
         }
         repositoriesRV.addOnItemTouchListener(RepositoryViewClickListener(itemCall, activity))

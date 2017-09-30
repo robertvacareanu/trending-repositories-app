@@ -24,20 +24,28 @@ class RepositoryViewClickListener(private val itemClickCallback: ItemClickCallba
     override fun onTouchEvent(rv: RecyclerView?, e: MotionEvent?) {}
 
     override fun onInterceptTouchEvent(rv: RecyclerView?, e: MotionEvent?): Boolean {
+
+
         val childView = rv!!.findChildViewUnder(e!!.x, e.y)
-//        itemClickCallback.onItemClick(childView, rv.getChildAdapterPosition(childView))
+
 
         if (childView != null && gestureDetector.onTouchEvent(e)) {
+
             itemClickCallback.onItemClick(childView, rv.getChildAdapterPosition(childView))
+
             return true
         }
 
         return false
+
+
     }
 
     override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {}
 
+
     interface ItemClickCallback {
+        fun onHeartClick(heart: View, position: Int)
         fun onItemClick(clickedView: View, position: Int)
         //fun onLongItemClick(view: View, position: Int)
     }
