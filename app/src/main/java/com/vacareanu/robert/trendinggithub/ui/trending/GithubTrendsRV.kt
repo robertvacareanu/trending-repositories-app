@@ -45,13 +45,11 @@ class GithubTrendsRV : Fragment() {
         repositoriesRV.adapter = adapter
         val itemCall = object : RepositoryViewClickListener.ItemClickCallback {
             override fun onItemClick(clickedView: View, position: Int) {
-                Log.v("GTRV", "Clicked")
+                activity.makeToast("Item clicked")
             }
 
             override fun onHeartClick(heart: View, position: Int) {
-                Log.v("GTRV",
-                        "Heart clicked of ${ViewModelProviders.of(activity).get(RepositoryViewModel::class.java).repositories.value!![position].name}"
-                )
+                activity.makeToast("Heart clicked")
             }
         }
         repositoriesRV.addOnItemTouchListener(RepositoryViewClickListener(itemCall, activity))
@@ -64,11 +62,11 @@ class GithubTrendsRV : Fragment() {
         super.onActivityCreated(savedInstanceState)
         val viewModel: RepositoryViewModel = ViewModelProviders.of(activity).get(RepositoryViewModel::class.java)
         viewModel.repositories.observe(this, Observer<List<Repository>> { t: List<Repository>? ->
-                if (t == null) {
+            if (t == null) {
 
-                } else {
-                    adapter.setRepositories(t)
-                }
+            } else {
+                adapter.setRepositories(t)
+            }
         })
     }
 

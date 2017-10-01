@@ -6,10 +6,10 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
-import com.vacareanu.robert.trendinggithub.ui.repositories.GithubTrendsRV
 import com.vacareanu.robert.trendinggithub.R
 import com.vacareanu.robert.trendinggithub.makeToast
 import com.vacareanu.robert.trendinggithub.ui.favorites.FavoritesRV
+import com.vacareanu.robert.trendinggithub.ui.repositories.GithubTrendsRV
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
-        if(savedInstanceState==null) {
+        if (savedInstanceState == null) {
             nav_view.setCheckedItem(R.id.nav_trending)
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container, GithubTrendsRV.newInstance()).commit()
         }

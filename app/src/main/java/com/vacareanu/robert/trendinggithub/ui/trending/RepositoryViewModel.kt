@@ -4,14 +4,13 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
 import android.os.Handler
-import android.util.Log
 import com.vacareanu.robert.trendinggithub.model.Repository
 import com.vacareanu.robert.trendinggithub.randomRepo
 
 /**
  * Created by robert on 9/27/17.
  */
-class RepositoryViewModel(application: Application): AndroidViewModel(application) {
+class RepositoryViewModel(application: Application) : AndroidViewModel(application) {
 
     var repositories: MutableLiveData<List<Repository>> = MutableLiveData()
 
@@ -26,7 +25,6 @@ class RepositoryViewModel(application: Application): AndroidViewModel(applicatio
             )
         }, 5000)
     }
-
 
 
 }
