@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.nav_favorites -> {
                 // Handle the camera action
-                makeToast("Favorites")
+                makeToast("Favorite")
                 supportFragmentManager.beginTransaction().replace(R.id.fragment_container, FavoritesRV.newInstance()).commit()
             }
             R.id.nav_trending -> {
