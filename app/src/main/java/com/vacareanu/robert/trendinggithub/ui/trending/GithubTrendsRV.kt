@@ -30,6 +30,7 @@ class GithubTrendsRV : Fragment() {
 
     private lateinit var adapter: GithubTrendsRVAdapter
     private lateinit var repositoriesRV: RecyclerView
+    private lateinit var viewModel: RepositoryViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,11 +45,13 @@ class GithubTrendsRV : Fragment() {
         repositoriesRV.layoutManager = LinearLayoutManager(activity)
         repositoriesRV.adapter = adapter
         val itemCall = object : RepositoryViewClickListener.ItemClickCallback {
-            override fun onItemClick(clickedView: View, position: Int) {
+            override fun onItemClick(position: Int) {
                 activity.makeToast("Item clicked")
+                callback?.handleRepoClick(viewModel.repositories.value!![position])
             }
 
             override fun onHeartClick(heart: View, position: Int) {
+                //Some animation here. Fill/Unfill heart.
                 activity.makeToast("Heart clicked")
             }
         }
@@ -60,7 +63,7 @@ class GithubTrendsRV : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val viewModel: RepositoryViewModel = ViewModelProviders.of(activity).get(RepositoryViewModel::class.java)
+        viewModel = ViewModelProviders.of(activity).get(RepositoryViewModel::class.java)
         viewModel.repositories.observe(this, Observer<List<Repository>> { t: List<Repository>? ->
             if (t == null) {
 
@@ -93,7 +96,10 @@ class GithubTrendsRV : Fragment() {
      *
      * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
      */
-    interface OnGithubTrendsRVInteractionListener
+    interface OnGithubTrendsRVInteractionListener {
+        fun handleRepoClick(repo: Repository)
+        fun handleHeartClick(repo: Repository)
+    }
 
     companion object {
 

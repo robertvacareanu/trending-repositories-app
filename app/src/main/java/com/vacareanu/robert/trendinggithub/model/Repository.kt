@@ -13,4 +13,5 @@ data class Repository(var url: String,
                       val size: Int,
                       val languages: MutableList<String>,
                       var forks: Int,
-                      var stars: Int)
+                      var stars: Int,
+                      val favorite: Boolean = false)

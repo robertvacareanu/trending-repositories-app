@@ -39,7 +39,7 @@ class RepositoryViewClickListener(private val itemClickCallback: ItemClickCallba
                 return true
             }
 
-            itemClickCallback.onItemClick(childView, rv.getChildAdapterPosition(childView))
+            itemClickCallback.onItemClick(rv.getChildAdapterPosition(childView))
 
             return true
         }
@@ -70,7 +70,7 @@ class RepositoryViewClickListener(private val itemClickCallback: ItemClickCallba
 
     interface ItemClickCallback {
         fun onHeartClick(heart: View, position: Int)
-        fun onItemClick(clickedView: View, position: Int)
+        fun onItemClick(position: Int)
         //fun onLongItemClick(view: View, position: Int)
     }
 
