@@ -4,12 +4,14 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.0"
     defaultConfig {
         applicationId "com.vacareanu.robert.trendinggithub"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -42,7 +44,9 @@ dependencies {
 
     //Room
     compile "android.arch.persistence.room:runtime:$archRoomVersion"
-    annotationProcessor "android.arch.persistence.room:compiler:$archRoomVersion"
+    //annotationProcessor "android.arch.persistence.room:compiler:$archRoomVersion"
+    kapt "android.arch.persistence.room:compiler:$archRoomVersion"
+
 
     //Retrofit, Okhttp
     implementation 'com.squareup.retrofit:retrofit:1.9.0'

@@ -1,5 +1,6 @@
 package com.vacareanu.robert.trendinggithub.ui.details
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.vacareanu.robert.trendinggithub.R
+import com.vacareanu.robert.trendinggithub.model.Repository
 
 /**
  * A simple [Fragment] subclass.
@@ -26,10 +28,6 @@ class DetailsFragment : Fragment() {
 
     lateinit var url: TextView
     lateinit var name: TextView
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -48,9 +46,16 @@ class DetailsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+//        viewModel.repo.observe(this, Observer<Repository> { t: Repository? ->
+//            t?.let {
+//                url.text = t.url
+//                name.text = t.name
+//            }
+//        })
         url.text = viewModel.repo.url
         name.text = viewModel.repo.name
+
+
     }
 
     override fun onAttach(context: Context?) {

@@ -1,12 +1,14 @@
 package com.vacareanu.robert.trendinggithub.ui.repositories
 
 import android.content.Context
+import android.media.Image
 import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.RecyclerView
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 
 /**
  * Created by robert on 9/27/17.
@@ -31,7 +33,7 @@ class RepositoryViewClickListener(private val itemClickCallback: ItemClickCallba
 
         if (childView != null && gestureDetector.onTouchEvent(e)) {
 
-            val imageView = findChildOf<AppCompatImageView>(childView, e.x, e.y)
+            val imageView = findChildOf<ImageView>(childView, e.x, e.y)
 
 
             imageView?.let {
@@ -47,7 +49,7 @@ class RepositoryViewClickListener(private val itemClickCallback: ItemClickCallba
         return false
     }
 
-    private inline fun <reified T : View> findChildOf(childView: View, x: Float, y: Float): View? = findChildrenUnder(childView, x, y, childView.x, childView.y).firstOrNull { it is T }
+    private inline fun <reified T : View> findChildOf(childView: View, x: Float, y: Float): T? = findChildrenUnder(childView, x, y, childView.x, childView.y).firstOrNull { it is T } as T?
 
     private fun findChildrenUnder(childView: View, x: Float, y: Float, xOffset: Float, yOffset: Float): List<View> {
         val result = mutableListOf(childView)
@@ -69,7 +71,7 @@ class RepositoryViewClickListener(private val itemClickCallback: ItemClickCallba
 
 
     interface ItemClickCallback {
-        fun onHeartClick(heart: View, position: Int)
+        fun onHeartClick(heart: ImageView, position: Int)
         fun onItemClick(position: Int)
         //fun onLongItemClick(view: View, position: Int)
     }

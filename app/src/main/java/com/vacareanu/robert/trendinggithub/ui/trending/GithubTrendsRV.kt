@@ -1,19 +1,23 @@
 package com.vacareanu.robert.trendinggithub.ui.repositories
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
+import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.vacareanu.robert.trendinggithub.R
 import com.vacareanu.robert.trendinggithub.makeToast
 import com.vacareanu.robert.trendinggithub.model.Repository
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 /**
@@ -50,9 +54,12 @@ class GithubTrendsRV : Fragment() {
                 callback?.handleRepoClick(viewModel.repositories.value!![position])
             }
 
-            override fun onHeartClick(heart: View, position: Int) {
+            override fun onHeartClick(heart: ImageView, position: Int) {
                 //Some animation here. Fill/Unfill heart.
                 activity.makeToast("Heart clicked")
+//                heart.setImageResource(R.drawable.abc_btn_colored_material)
+
+//                callback?.handleHeartClick(viewModel.repositories.value!![position])
             }
         }
         repositoriesRV.addOnItemTouchListener(RepositoryViewClickListener(itemCall, activity))
