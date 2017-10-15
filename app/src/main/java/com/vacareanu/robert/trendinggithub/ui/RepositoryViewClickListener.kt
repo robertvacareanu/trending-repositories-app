@@ -1,8 +1,6 @@
 package com.vacareanu.robert.trendinggithub.ui.repositories
 
 import android.content.Context
-import android.media.Image
-import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.RecyclerView
 import android.view.GestureDetector
 import android.view.MotionEvent
@@ -10,9 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 
-/**
- * Created by robert on 9/27/17.
- */
+
 class RepositoryViewClickListener(private val itemClickCallback: ItemClickCallback, context: Context) : RecyclerView.OnItemTouchListener {
 
     private var gestureDetector: GestureDetector

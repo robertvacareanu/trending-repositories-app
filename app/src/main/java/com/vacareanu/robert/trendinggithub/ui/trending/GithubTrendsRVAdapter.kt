@@ -10,9 +10,7 @@ import android.widget.TextView
 import com.vacareanu.robert.trendinggithub.R
 import com.vacareanu.robert.trendinggithub.model.Repository
 
-/**
- * Created by robert on 9/27/17.
- */
+
 class GithubTrendsRVAdapter : RecyclerView.Adapter<GithubTrendsRVAdapter.GithubTrendsViewHolder>() {
 
 

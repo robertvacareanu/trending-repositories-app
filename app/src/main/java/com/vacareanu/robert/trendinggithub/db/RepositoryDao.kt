@@ -4,9 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 import com.vacareanu.robert.trendinggithub.model.Repository
 
-/**
- * Created by robert on 10/6/17.
- */
+
 @Dao
 interface RepositoryDao {
 

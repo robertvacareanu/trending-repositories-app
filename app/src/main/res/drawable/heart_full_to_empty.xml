@@ -2,7 +2,7 @@
     android:drawable="@drawable/heart">
 
     <target
-        android:animation="@animator/color_change_animator"
-        android:name="heart"/>
+        android:name="heart fill color"
+        android:animation="@animator/full_to_empty"/>
 
 </animated-vector>

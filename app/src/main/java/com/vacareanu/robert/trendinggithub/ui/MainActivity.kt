@@ -1,10 +1,8 @@
 package com.vacareanu.robert.trendinggithub.ui
 
-import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.arch.persistence.room.Room
-import android.arch.persistence.room.RoomDatabase
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -83,7 +81,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return ViewModelProviders.of(this).get(T::class.java)
     }
 
-    inline fun <reified T: BaseViewModel> viewModelWithFactory(factory: ViewModelProvider.Factory): T {
+    inline fun <reified T : BaseViewModel> viewModelWithFactory(factory: ViewModelProvider.Factory): T {
         return ViewModelProviders.of(this, factory).get(T::class.java)
     }
 
@@ -97,12 +95,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun handleHeartClick(repo: Repository) {
         viewModel.save(repo)
     }
-    inner class AT: AsyncTask<Unit, Unit, Unit>() {
-        override fun doInBackground(vararg p0: Unit?)  {
+
+    inner class AT : AsyncTask<Unit, Unit, Unit>() {
+        override fun doInBackground(vararg p0: Unit?) {
             val insertRepoTest = Repository()
             with(insertRepoTest) {
-                name="InsertedRepo"
-                url="InsertedUrl"
+                name = "InsertedRepo"
+                url = "InsertedUrl"
                 forks = 100
                 stars = 50
                 description = "InsertedDescription"

@@ -1,15 +1,14 @@
 package com.vacareanu.robert.trendinggithub.ui.repositories
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
-import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
+import android.support.graphics.drawable.AnimatedVectorDrawableCompat
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +16,6 @@ import android.widget.ImageView
 import com.vacareanu.robert.trendinggithub.R
 import com.vacareanu.robert.trendinggithub.makeToast
 import com.vacareanu.robert.trendinggithub.model.Repository
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 /**
@@ -36,10 +34,6 @@ class GithubTrendsRV : Fragment() {
     private lateinit var repositoriesRV: RecyclerView
     private lateinit var viewModel: RepositoryViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -57,7 +51,11 @@ class GithubTrendsRV : Fragment() {
             override fun onHeartClick(heart: ImageView, position: Int) {
                 //Some animation here. Fill/Unfill heart.
                 activity.makeToast("Heart clicked")
-//                heart.setImageResource(R.drawable.abc_btn_colored_material)
+
+                val cd: AnimatedVectorDrawableCompat? = AnimatedVectorDrawableCompat.create(context, R.drawable.heart_empty_to_full)
+                heart.setImageDrawable(cd)
+                cd?.start()
+
 
 //                callback?.handleHeartClick(viewModel.repositories.value!![position])
             }

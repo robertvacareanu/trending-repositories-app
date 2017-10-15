@@ -1,9 +1,7 @@
 package com.vacareanu.robert.trendinggithub
 
-import android.app.Activity
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MediatorLiveData
-import android.arch.lifecycle.Transformations
 import android.content.Context
 import android.util.Log
 import android.view.View
@@ -12,9 +10,7 @@ import android.widget.Toast
 import com.vacareanu.robert.trendinggithub.model.Repository
 import java.util.*
 
-/**
- * Created by robert on 9/25/17.
- */
+
 fun Context.makeToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }
@@ -34,8 +30,8 @@ fun randomRepo(): Repository {
 //    )
     val result = Repository()
     result.url = "URL$created"
-    result.name =  "Name$created"
-    result.created =  Date(System.currentTimeMillis() - random.nextLong() % 123456)
+    result.name = "Name$created"
+    result.created = Date(System.currentTimeMillis() - random.nextLong() % 123456)
     result.updated = Date()
     result.forks = random.nextInt() % 123
     result.stars = random.nextInt() % 1234
@@ -58,8 +54,8 @@ fun printEveryViewInside(view: View, parent: View) {
 
 fun <T> transformationsfilter(source: LiveData<T>, tester: (T?) -> Boolean): LiveData<T> {
     val result = MediatorLiveData<T>()
-    result.addSource(source) {
-        item: T? -> if(tester(item)) result.value = item
+    result.addSource(source) { item: T? ->
+        if (tester(item)) result.value = item
     }
 
     return result
@@ -68,8 +64,8 @@ fun <T> transformationsfilter(source: LiveData<T>, tester: (T?) -> Boolean): Liv
 fun <T> transformationTakeFirst(source: LiveData<List<T>>, tester: (T?) -> Boolean): LiveData<T> {
     val result = MediatorLiveData<T>()
 
-    result.addSource(source) {
-        t: List<T>? -> result.value = t?.first(tester)
+    result.addSource(source) { t: List<T>? ->
+        result.value = t?.first(tester)
     }
 
     return result
@@ -78,10 +74,9 @@ fun <T> transformationTakeFirst(source: LiveData<List<T>>, tester: (T?) -> Boole
 fun <T> transformationTakeNth(source: LiveData<List<T>>, n: Int): LiveData<T> {
     val result = MediatorLiveData<T>()
 
-    result.addSource(source) {
-        t: List<T>? ->
-            Log.v("Utils", "Try to add")
-            t?.let { Log.v("Utils", "Added ${t[n].toString()}"); result.value = t[n] }
+    result.addSource(source) { t: List<T>? ->
+        Log.v("Utils", "Try to add")
+        t?.let { Log.v("Utils", "Added ${t[n].toString()}"); result.value = t[n] }
     }
 
     return result

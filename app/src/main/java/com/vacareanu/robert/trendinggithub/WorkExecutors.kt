@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit
 
 class JobExecutor {
 
-
     companion object {
 
         private val INITIAL_POOL_SIZE = 3
@@ -23,8 +22,7 @@ class JobExecutor {
         }
     }
 
-
-    class JobExecutorThreadFactory(val THREAD_NAME: String) : ThreadFactory {
+    class JobExecutorThreadFactory(private val THREAD_NAME: String) : ThreadFactory {
         var counter = 0
         override fun newThread(p0: Runnable?): Thread = Thread(p0, "$THREAD_NAME${counter++}")
     }

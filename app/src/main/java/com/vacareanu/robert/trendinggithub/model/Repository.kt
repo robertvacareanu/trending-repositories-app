@@ -7,9 +7,7 @@ import com.vacareanu.robert.trendinggithub.db.DateConverter
 import com.vacareanu.robert.trendinggithub.db.ListConverter
 import java.util.*
 
-/**
- * Created by robert on 9/26/17.
- */
+
 //@Entity(tableName = "repository")
 //data class Repository(@PrimaryKey var url: String = "",
 //                      var name: String = "",

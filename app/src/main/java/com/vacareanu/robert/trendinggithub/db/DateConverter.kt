@@ -3,9 +3,7 @@ package com.vacareanu.robert.trendinggithub.db
 import android.arch.persistence.room.TypeConverter
 import java.util.*
 
-/**
- * Created by robert on 10/7/17.
- */
+
 class DateConverter {
 
     @TypeConverter

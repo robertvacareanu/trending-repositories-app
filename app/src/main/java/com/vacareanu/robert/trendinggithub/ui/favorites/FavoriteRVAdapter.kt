@@ -9,10 +9,8 @@ import android.widget.TextView
 import com.vacareanu.robert.trendinggithub.R
 import com.vacareanu.robert.trendinggithub.model.Repository
 
-/**
- * Created by robert on 10/7/17.
- */
-class FavoriteRVAdapter: RecyclerView.Adapter<FavoriteRVAdapter.FavoriteViewHolder>() {
+
+class FavoriteRVAdapter : RecyclerView.Adapter<FavoriteRVAdapter.FavoriteViewHolder>() {
 
     private var repositories: List<out Repository>? = null
 
@@ -43,8 +41,9 @@ class FavoriteRVAdapter: RecyclerView.Adapter<FavoriteRVAdapter.FavoriteViewHold
 
     override fun getItemCount(): Int = repositories?.size ?: 0
 
-    class FavoriteViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class FavoriteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var url: TextView
+
         init {
             url = itemView.findViewById(R.id.favorite_url)
         }

@@ -7,9 +7,7 @@ import android.os.Handler
 import com.vacareanu.robert.trendinggithub.model.Repository
 import com.vacareanu.robert.trendinggithub.randomRepo
 
-/**
- * Created by robert on 9/27/17.
- */
+
 class RepositoryViewModel(application: Application) : AndroidViewModel(application) {
 
     var repositories: MutableLiveData<List<Repository>> = MutableLiveData()
