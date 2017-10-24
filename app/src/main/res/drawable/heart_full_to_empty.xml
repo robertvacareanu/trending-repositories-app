@@ -1,5 +1,5 @@
 <animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:drawable="@drawable/heart">
+    android:drawable="@drawable/filled_heart">
 
     <target
         android:name="heart fill color"

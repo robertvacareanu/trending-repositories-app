@@ -93,7 +93,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun handleHeartClick(repo: Repository) {
-        viewModel.save(repo)
+        if(repo.isFavorite) {
+            repo.isFavorite=false
+            viewModel.delete(repo)
+        } else {
+            repo.isFavorite=true
+            viewModel.save(repo)
+        }
+
     }
 
     inner class AT : AsyncTask<Unit, Unit, Unit>() {

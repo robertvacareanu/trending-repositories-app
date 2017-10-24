@@ -29,14 +29,18 @@ fun randomRepo(): Repository {
 //            random.nextInt() % 123
 //    )
     val result = Repository()
-    result.url = "URL$created"
-    result.name = "Name$created"
-    result.created = Date(System.currentTimeMillis() - random.nextLong() % 123456)
-    result.updated = Date()
-    result.forks = random.nextInt() % 123
-    result.stars = random.nextInt() % 1234
-    result.languages = mutableListOf("A", "B", "C")
-    result.size = random.nextInt() % 1234
+
+    with(result) {
+        url = "URL${com.vacareanu.robert.trendinggithub.created}"
+        name = "Name${com.vacareanu.robert.trendinggithub.created}"
+        created = Date(System.currentTimeMillis() - random.nextLong() % 123456)
+        updated = Date()
+        forks = random.nextInt() % 123
+        stars = random.nextInt() % 1234
+        languages = mutableListOf("A", "B", "C")
+        size = random.nextInt() % 1234
+        isFavorite = false
+    }
 
     created++
     return result

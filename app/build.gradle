@@ -6,9 +6,10 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.vacareanu.robert.trendinggithub"
         minSdkVersion 21
@@ -40,7 +41,7 @@ dependencies {
     implementation 'com.android.support:support-v4:26.1.0'
     compile "android.arch.lifecycle:runtime:$archLifecycleVersion"
     compile "android.arch.lifecycle:extensions:$archLifecycleVersion"
-    annotationProcessor "android.arch.lifecycle:compiler:$archLifecycleVersion"
+    kapt "android.arch.lifecycle:compiler:$archLifecycleVersion"
 
     //Room
     compile "android.arch.persistence.room:runtime:$archRoomVersion"

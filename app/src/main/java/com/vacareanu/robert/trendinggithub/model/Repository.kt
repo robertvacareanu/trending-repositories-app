@@ -34,6 +34,7 @@ class Repository {
     var languages: MutableList<String> = mutableListOf()
     var forks: Int = 0
     var stars: Int = 0
+    var isFavorite: Boolean = false
 
 
     override fun toString(): String = "Url: $url, name: $name, description: $description"

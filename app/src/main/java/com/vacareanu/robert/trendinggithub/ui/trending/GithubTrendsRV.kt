@@ -8,7 +8,6 @@ import android.support.graphics.drawable.AnimatedVectorDrawableCompat
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,13 +32,15 @@ class GithubTrendsRV : Fragment() {
     private lateinit var adapter: GithubTrendsRVAdapter
     private lateinit var repositoriesRV: RecyclerView
     private lateinit var viewModel: RepositoryViewModel
+//    private var emptyHeartAnimation: AnimatedVectorDrawableCompat? = null
+//    private var fillHeartAnimation: AnimatedVectorDrawableCompat? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater!!.inflate(R.layout.fragment_github_trends_rv, container, false)
         repositoriesRV = view.findViewById(R.id.repositories_rv)
-        adapter = GithubTrendsRVAdapter()
+        adapter = GithubTrendsRVAdapter(context.applicationContext)
         repositoriesRV.layoutManager = LinearLayoutManager(activity)
         repositoriesRV.adapter = adapter
         val itemCall = object : RepositoryViewClickListener.ItemClickCallback {
@@ -49,17 +50,26 @@ class GithubTrendsRV : Fragment() {
             }
 
             override fun onHeartClick(heart: ImageView, position: Int) {
-                //Some animation here. Fill/Unfill heart.
+                //Some animation here. Fill/Unfill empty_heart.
                 activity.makeToast("Heart clicked")
 
-                val cd: AnimatedVectorDrawableCompat? = AnimatedVectorDrawableCompat.create(context, R.drawable.heart_empty_to_full)
-                heart.setImageDrawable(cd)
-                cd?.start()
-
-
-//                callback?.handleHeartClick(viewModel.repositories.value!![position])
+                val isFav = viewModel.repositories.value!![position].isFavorite
+                if(isFav) {
+                    val emptyHeartAnimation = AnimatedVectorDrawableCompat.create(context, R.drawable.heart_full_to_empty)
+                    heart.setImageDrawable(emptyHeartAnimation)
+                    emptyHeartAnimation?.start()
+                } else {
+                    val fillHeartAnimation = AnimatedVectorDrawableCompat.create(context, R.drawable.heart_empty_to_full)
+                    heart.setImageDrawable(fillHeartAnimation)
+                    fillHeartAnimation?.start()
+                }
+                callback?.handleHeartClick(viewModel.repositories.value!![position])
             }
         }
+
+//        fillHeartAnimation = AnimatedVectorDrawableCompat.create(context, R.drawable.heart_empty_to_full)
+//        emptyHeartAnimation = AnimatedVectorDrawableCompat.create(context, R.drawable.heart_full_to_empty)
+
         repositoriesRV.addOnItemTouchListener(RepositoryViewClickListener(itemCall, activity))
 
 

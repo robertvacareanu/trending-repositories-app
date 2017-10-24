@@ -12,10 +12,7 @@ class FavoritesViewModel(repository: RepositoryDao) : BaseViewModel("RepositoryV
     val repositories: LiveData<List<Repository>>
 
     init {
-        logV("Init")
         repositories = repository.findAll()
-        logV("Init finished")
-        logV("Size ${repositories.value?.size.toString()}")
     }
 
 

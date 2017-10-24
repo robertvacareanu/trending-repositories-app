@@ -4,11 +4,6 @@
     android:viewportHeight="24"
     android:viewportWidth="24">
 
-    <!--<path-->
-    <!--android:fillColor="@color/transparent"-->
-    <!--android:pathData="@string/heart"-->
-    <!--android:strokeColor="#000" />-->
-
     <path
         android:name="heart fill color"
         android:fillColor="@color/gray"

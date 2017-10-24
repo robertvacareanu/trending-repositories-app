@@ -1,5 +1,7 @@
 package com.vacareanu.robert.trendinggithub.ui.repositories
 
+import android.content.Context
+import android.support.graphics.drawable.AnimatedVectorDrawableCompat
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -11,7 +13,7 @@ import com.vacareanu.robert.trendinggithub.R
 import com.vacareanu.robert.trendinggithub.model.Repository
 
 
-class GithubTrendsRVAdapter : RecyclerView.Adapter<GithubTrendsRVAdapter.GithubTrendsViewHolder>() {
+class GithubTrendsRVAdapter(val context: Context) : RecyclerView.Adapter<GithubTrendsRVAdapter.GithubTrendsViewHolder>() {
 
 
     private var repositories: List<out Repository>? = null
@@ -58,6 +60,11 @@ class GithubTrendsRVAdapter : RecyclerView.Adapter<GithubTrendsRVAdapter.GithubT
             it.title.text = repo.name
             it.description.text = repo.description
             it.stars.text = repo.stars.toString()
+            if(repo.isFavorite) {
+                it.heart.setImageDrawable(AnimatedVectorDrawableCompat.create(context, R.drawable.heart_full_to_empty))
+            } else {
+                it.heart.setImageDrawable(AnimatedVectorDrawableCompat.create(context, R.drawable.heart_empty_to_full))
+            }
         }
 
     }
