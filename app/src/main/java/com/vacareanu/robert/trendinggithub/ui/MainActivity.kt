@@ -1,9 +1,9 @@
 package com.vacareanu.robert.trendinggithub.ui
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
-import android.arch.persistence.room.Room
-import android.os.AsyncTask
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
@@ -11,18 +11,19 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.MenuItem
-import com.vacareanu.robert.trendinggithub.BaseViewModel
-import com.vacareanu.robert.trendinggithub.MainActivityViewModelFactory
-import com.vacareanu.robert.trendinggithub.R
-import com.vacareanu.robert.trendinggithub.db.AppDatabase
-import com.vacareanu.robert.trendinggithub.makeToast
+import com.vacareanu.robert.trendinggithub.*
 import com.vacareanu.robert.trendinggithub.model.Repository
+import com.vacareanu.robert.trendinggithub.network.ApiResponse
+import com.vacareanu.robert.trendinggithub.network.GithubService
+import com.vacareanu.robert.trendinggithub.network.GithubServiceResponse
 import com.vacareanu.robert.trendinggithub.ui.details.DetailsFragment
 import com.vacareanu.robert.trendinggithub.ui.details.DetailsViewModel
 import com.vacareanu.robert.trendinggithub.ui.favorites.FavoritesRV
 import com.vacareanu.robert.trendinggithub.ui.repositories.GithubTrendsRV
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, GithubTrendsRV.OnGithubTrendsRVInteractionListener, FavoritesRV.OnFavoritesInteractionListener, DetailsFragment.OnDetailsInteractionListener {
 
@@ -34,6 +35,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+//        val data: LiveData<ApiResponse<GithubServiceResponse>> = GithubService.githubNetwork.create(GithubService::class.java).getRepositories("language=kotlin+created%3A>${SimpleDateFormat("yyyy-MM-dd").format(Date().time - 14 * 24 * 60 * 60 * 1000)}", "stars")
+//        data.observe(this, Observer<ApiResponse<GithubServiceResponse>> { response: ApiResponse<GithubServiceResponse>? ->
+//            response?.body?.repositories?.forEach {
+//                Log.v("MA", "${it.name}, ${it.html_url}")
+//            }
+//        })
         viewModel = viewModelWithFactory(MainActivityViewModelFactory(applicationContext))
 
         val toggle = ActionBarDrawerToggle(
@@ -46,8 +53,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             nav_view.setCheckedItem(R.id.nav_trending)
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container, GithubTrendsRV.newInstance()).commit()
         }
-
-//        AT().execute()
 
     }
 
@@ -93,30 +98,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun handleHeartClick(repo: Repository) {
-        if(repo.isFavorite) {
-            repo.isFavorite=false
+        if (repo.isFavorite) {
+            repo.isFavorite = false
             viewModel.delete(repo)
         } else {
-            repo.isFavorite=true
+            repo.isFavorite = true
             viewModel.save(repo)
-        }
-
-    }
-
-    inner class AT : AsyncTask<Unit, Unit, Unit>() {
-        override fun doInBackground(vararg p0: Unit?) {
-            val insertRepoTest = Repository()
-            with(insertRepoTest) {
-                name = "InsertedRepo"
-                url = "InsertedUrl"
-                forks = 100
-                stars = 50
-                description = "InsertedDescription"
-                languages = mutableListOf("a", "b")
-            }
-            val a = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "database-name").build().repositoryDao()
-            a.insertAll(listOf(insertRepoTest))
-            Log.v("MainActivity", "Size: ${a.getAll().size}")
         }
 
     }

@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.vacareanu.robert.trendinggithub.model.Repository
+import com.vacareanu.robert.trendinggithub.network.ApiResponse
+import com.vacareanu.robert.trendinggithub.network.GithubServiceResponse
 import java.util.*
 
 
