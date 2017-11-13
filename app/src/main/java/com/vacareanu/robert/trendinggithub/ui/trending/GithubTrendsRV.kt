@@ -38,10 +38,10 @@ class GithubTrendsRV : Fragment() {
 //    private var emptyHeartAnimation: AnimatedVectorDrawableCompat? = null
 //    private var fillHeartAnimation: AnimatedVectorDrawableCompat? = null
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view = inflater!!.inflate(R.layout.fragment_github_trends_rv, container, false)
+        val view = inflater.inflate(R.layout.fragment_github_trends_rv, container, false)
         repositoriesRV = view.findViewById(R.id.repositories_rv)
         adapter = GithubTrendsRVAdapter(context.applicationContext)
         repositoriesRV.layoutManager = LinearLayoutManager(activity)

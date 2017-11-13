@@ -29,10 +29,10 @@ class DetailsFragment : Fragment() {
     lateinit var url: TextView
     lateinit var name: TextView
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view = inflater!!.inflate(R.layout.fragment_details, container, false)
+        val view = inflater.inflate(R.layout.fragment_details, container, false)
 
         url = view.findViewById(R.id.tv_url)
         name = view.findViewById(R.id.tv_name)

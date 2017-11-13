@@ -32,10 +32,10 @@ class FavoritesRV : Fragment() {
     private lateinit var viewModel: FavoritesViewModel
     private lateinit var adapter: FavoriteRVAdapter
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view = inflater!!.inflate(R.layout.fragment_favorites_rv, container, false)
+        val view = inflater.inflate(R.layout.fragment_favorites_rv, container, false)
         viewModel = ViewModelProviders.of(this, FavoritesViewModelFactory(activity.applicationContext)).get(FavoritesViewModel::class.java)
 
 

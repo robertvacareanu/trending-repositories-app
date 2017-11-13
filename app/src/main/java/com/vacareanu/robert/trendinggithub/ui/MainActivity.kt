@@ -35,12 +35,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-//        val data: LiveData<ApiResponse<GithubServiceResponse>> = GithubService.githubNetwork.create(GithubService::class.java).getRepositories("language=kotlin+created%3A>${SimpleDateFormat("yyyy-MM-dd").format(Date().time - 14 * 24 * 60 * 60 * 1000)}", "stars")
-//        data.observe(this, Observer<ApiResponse<GithubServiceResponse>> { response: ApiResponse<GithubServiceResponse>? ->
-//            response?.body?.repositories?.forEach {
-//                Log.v("MA", "${it.name}, ${it.html_url}")
-//            }
-//        })
         viewModel = viewModelWithFactory(MainActivityViewModelFactory(applicationContext))
 
         val toggle = ActionBarDrawerToggle(
