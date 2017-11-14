@@ -6,7 +6,7 @@ import com.vacareanu.robert.trendinggithub.db.RepositoryDao
 import com.vacareanu.robert.trendinggithub.model.Repository
 
 
-class FavoritesViewModel(repository: RepositoryDao) : BaseViewModel("RepositoryViewModel") {
+class FavoritesViewModel(repository: RepositoryDao) : BaseViewModel("TrendsViewModel") {
 
 
     val repositories: LiveData<List<Repository>>

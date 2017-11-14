@@ -5,8 +5,10 @@ import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MediatorLiveData
 import android.arch.lifecycle.MutableLiveData
+import android.arch.persistence.room.Room
 import android.util.Log
 import com.vacareanu.robert.trendinggithub.JobExecutor
+import com.vacareanu.robert.trendinggithub.db.AppDatabase
 import com.vacareanu.robert.trendinggithub.model.Repository
 import com.vacareanu.robert.trendinggithub.network.ApiResponse
 import com.vacareanu.robert.trendinggithub.network.GithubService
@@ -15,17 +17,24 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class RepositoryViewModel(application: Application) : AndroidViewModel(application) {
+class TrendsViewModel(application: Application) : AndroidViewModel(application) {
 
-    var repositories: MutableLiveData<List<Repository>> = MutableLiveData()
+
+    val repositories by lazy { MediatorLiveData<List<Repository>>() }
+    private var networkRepositories: MutableLiveData<List<Repository>> = MutableLiveData()
+    private var roomRepositories: LiveData<List<Repository>>
 
     // Responsible for merging data in db and data from network
     init {
-        repositories = transformationFromApiResponseToList(
+        roomRepositories = Room.databaseBuilder(application.applicationContext, AppDatabase::class.java, "database-name").build().repositoryDao().findAll()
+        networkRepositories = transformationFromApiResponseToList(
                 GithubService.githubNetwork.create(GithubService::class.java)
                         .getRepositories("language=kotlin+created%3A>${SimpleDateFormat("yyyy-MM-dd")
                                 .format(Date().time - 14 * 24 * 60 * 60 * 1000)}", "stars")
         )
+        repositories.addSource(networkRepositories){
+            t: List<Repository>? -> repositories.value = t
+        }
 
     }
 

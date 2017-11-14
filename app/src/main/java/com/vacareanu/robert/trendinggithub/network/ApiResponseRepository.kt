@@ -10,7 +10,8 @@ data class ApiResponseRepository(
         val language: String,
         val forks: Int,
         val created_at: Date,
-        val stars: Int
+        val stars: Int,
+        val description: String
 ) {
     fun toRepository(): Repository =
             with(Repository()) {
@@ -19,6 +20,7 @@ data class ApiResponseRepository(
                 stars = this@ApiResponseRepository.stars
                 name = this@ApiResponseRepository.name
                 created = this@ApiResponseRepository.created_at
+                description = this@ApiResponseRepository.description
                 this
             }
 }

@@ -8,7 +8,6 @@ import android.support.graphics.drawable.AnimatedVectorDrawableCompat
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,8 +15,6 @@ import android.widget.ImageView
 import com.vacareanu.robert.trendinggithub.R
 import com.vacareanu.robert.trendinggithub.makeToast
 import com.vacareanu.robert.trendinggithub.model.Repository
-import com.vacareanu.robert.trendinggithub.network.ApiResponse
-import com.vacareanu.robert.trendinggithub.network.GithubServiceResponse
 
 
 /**
@@ -34,7 +31,7 @@ class GithubTrendsRV : Fragment() {
 
     private lateinit var adapter: GithubTrendsRVAdapter
     private lateinit var repositoriesRV: RecyclerView
-    private lateinit var viewModel: RepositoryViewModel
+    private lateinit var viewModel: TrendsViewModel
 //    private var emptyHeartAnimation: AnimatedVectorDrawableCompat? = null
 //    private var fillHeartAnimation: AnimatedVectorDrawableCompat? = null
 
@@ -81,7 +78,7 @@ class GithubTrendsRV : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(activity).get(RepositoryViewModel::class.java)
+        viewModel = ViewModelProviders.of(activity).get(TrendsViewModel::class.java)
         viewModel.repositories.observe(this, Observer<List<Repository>> { t: List<Repository>? ->
             if (t == null) {
 
