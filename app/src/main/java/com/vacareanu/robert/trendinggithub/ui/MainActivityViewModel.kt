@@ -10,7 +10,7 @@ class MainActivityViewModel(private val repositoryDao: RepositoryDao) : BaseView
 
     fun save(repo: Repository) =
             JobExecutor.execute {
-                repositoryDao.insertAll(listOf(repo))
+                repositoryDao.insert(repo)
             }
     fun delete(repo: Repository) = JobExecutor.execute { repositoryDao.delete(repo) }
 }

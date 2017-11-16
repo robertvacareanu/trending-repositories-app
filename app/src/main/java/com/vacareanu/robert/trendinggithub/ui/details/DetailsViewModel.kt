@@ -8,7 +8,6 @@ class DetailsViewModel : BaseViewModel("DetailsViewModel") {
     lateinit var repo: Repository
 
     fun init(repo: Repository) {
-        logV("Init")
         this.repo = repo
     }
 }

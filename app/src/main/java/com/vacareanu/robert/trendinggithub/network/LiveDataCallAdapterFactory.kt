@@ -6,12 +6,8 @@ import retrofit2.CallAdapter
 import retrofit2.Retrofit
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
-import kotlin.reflect.KClass
-import kotlin.reflect.KFunction
 
-/**
- * Created by robert on 10/28/17.
- */
+
 class LiveDataCallAdapterFactory: CallAdapter.Factory() {
 
     override fun get(returnType: Type?, annotations: Array<out Annotation>?, retrofit: Retrofit?): CallAdapter<*, *>? {

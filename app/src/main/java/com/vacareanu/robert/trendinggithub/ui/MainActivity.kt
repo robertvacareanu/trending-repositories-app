@@ -85,7 +85,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun handleRepoClick(repo: Repository) {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         val detailsViewModel = ViewModelProviders.of(this).get(DetailsViewModel::class.java)
         detailsViewModel.init(repo)
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, DetailsFragment.newInstance(detailsViewModel)).addToBackStack(detailsViewModel.tag).commit()

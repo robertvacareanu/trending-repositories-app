@@ -6,8 +6,6 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MediatorLiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.persistence.room.Room
-import android.util.Log
-import com.vacareanu.robert.trendinggithub.JobExecutor
 import com.vacareanu.robert.trendinggithub.db.AppDatabase
 import com.vacareanu.robert.trendinggithub.model.Repository
 import com.vacareanu.robert.trendinggithub.network.ApiResponse
@@ -32,8 +30,8 @@ class TrendsViewModel(application: Application) : AndroidViewModel(application) 
                         .getRepositories("language=kotlin+created%3A>${SimpleDateFormat("yyyy-MM-dd")
                                 .format(Date().time - 14 * 24 * 60 * 60 * 1000)}", "stars")
         )
-        repositories.addSource(networkRepositories){
-            t: List<Repository>? -> repositories.value = t
+        repositories.addSource(networkRepositories) { t: List<Repository>? ->
+            repositories.value = t
         }
 
     }
@@ -47,8 +45,6 @@ class TrendsViewModel(application: Application) : AndroidViewModel(application) 
         }
         return result
     }
-
-
 
 
 }

@@ -1,7 +1,6 @@
 package com.vacareanu.robert.trendinggithub.network
 
 import android.arch.lifecycle.LiveData
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET

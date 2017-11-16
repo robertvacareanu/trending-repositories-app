@@ -15,9 +15,12 @@ interface RepositoryDao {
     fun getAll(): List<Repository>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(notes: List<Repository>)
+    fun insertAll(repositories: List<Repository>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(repository: Repository)
 
     @Delete
-    fun delete(n: Repository)
+    fun delete(repository: Repository)
 
 }
