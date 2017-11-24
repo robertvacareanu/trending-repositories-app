@@ -11,9 +11,6 @@ interface RepositoryDao {
     @Query("SELECT * FROM repository")
     fun findAll(): LiveData<List<Repository>>
 
-    @Query("SELECT * FROM repository")
-    fun getAll(): List<Repository>
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(repositories: List<Repository>)
 

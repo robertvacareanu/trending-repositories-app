@@ -9,7 +9,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '27.0.1'
     defaultConfig {
         applicationId "com.vacareanu.robert.trendinggithub"
         minSdkVersion 21
@@ -44,7 +44,7 @@ dependencies {
     kapt "android.arch.lifecycle:compiler:$archLifecycleVersion"
 
     //Room
-    compile "android.arch.persistence.room:runtime:$archRoomVersion"
+    implementation "android.arch.persistence.room:runtime:$archRoomVersion"
     //annotationProcessor "android.arch.persistence.room:compiler:$archRoomVersion"
     kapt "android.arch.persistence.room:compiler:$archRoomVersion"
 
