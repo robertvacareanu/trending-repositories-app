@@ -6,9 +6,10 @@ class ApiResponse<T> {
     val code: Int
     val body: T?
     val errorMessage: String?
+
     constructor(response: Response<T>) {
         code = response.code()
-        if(response.isSuccessful) {
+        if (response.isSuccessful) {
             body = response.body()!!
             errorMessage = null
         } else {
@@ -19,7 +20,7 @@ class ApiResponse<T> {
 
     constructor(error: Throwable) {
         code = 500
-        body=null
+        body = null
         this.errorMessage = error.message
     }
 }

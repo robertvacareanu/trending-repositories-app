@@ -12,5 +12,6 @@ class MainActivityViewModel(private val repositoryDao: RepositoryDao) : BaseView
             JobExecutor.execute {
                 repositoryDao.insert(repo)
             }
+
     fun delete(repo: Repository) = JobExecutor.execute { repositoryDao.delete(repo) }
 }

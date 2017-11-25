@@ -1,7 +1,5 @@
 package com.vacareanu.robert.trendinggithub.ui
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,21 +7,18 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.MenuItem
-import com.vacareanu.robert.trendinggithub.*
+import com.vacareanu.robert.trendinggithub.BaseViewModel
+import com.vacareanu.robert.trendinggithub.MainActivityViewModelFactory
+import com.vacareanu.robert.trendinggithub.R
+import com.vacareanu.robert.trendinggithub.makeToast
 import com.vacareanu.robert.trendinggithub.model.Repository
-import com.vacareanu.robert.trendinggithub.network.ApiResponse
-import com.vacareanu.robert.trendinggithub.network.GithubService
-import com.vacareanu.robert.trendinggithub.network.GithubServiceResponse
 import com.vacareanu.robert.trendinggithub.ui.details.DetailsFragment
 import com.vacareanu.robert.trendinggithub.ui.details.DetailsViewModel
 import com.vacareanu.robert.trendinggithub.ui.favorites.FavoritesRV
 import com.vacareanu.robert.trendinggithub.ui.repositories.GithubTrendsRV
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import java.text.SimpleDateFormat
-import java.util.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, GithubTrendsRV.OnGithubTrendsRVInteractionListener, FavoritesRV.OnFavoritesInteractionListener, DetailsFragment.OnDetailsInteractionListener {
 

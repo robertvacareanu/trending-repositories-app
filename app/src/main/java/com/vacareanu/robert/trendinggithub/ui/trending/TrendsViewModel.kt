@@ -45,7 +45,8 @@ class TrendsViewModel(application: Application) : AndroidViewModel(application) 
         }
         repositories.addSource(roomRepositories) { t: List<Repository>? ->
             t?.let {
-                t.forEach { r -> r.isFavorite=true
+                t.forEach { r ->
+                    r.isFavorite = true
                     networkRepositories.value?.firstOrNull { r.url == it.url }?.let { it.isFavorite = true }
 
                 }

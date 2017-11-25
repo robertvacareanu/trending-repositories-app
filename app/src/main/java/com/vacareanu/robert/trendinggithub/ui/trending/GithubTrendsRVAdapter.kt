@@ -60,7 +60,7 @@ class GithubTrendsRVAdapter(val context: Context) : RecyclerView.Adapter<GithubT
             it.title.text = repo.name
             it.description.text = repo.description
             it.stars.text = repo.stars.toString()
-            if(repo.isFavorite) {
+            if (repo.isFavorite) {
                 it.heart.setImageDrawable(AnimatedVectorDrawableCompat.create(context, R.drawable.heart_full_to_empty))
             } else {
                 it.heart.setImageDrawable(AnimatedVectorDrawableCompat.create(context, R.drawable.heart_empty_to_full))

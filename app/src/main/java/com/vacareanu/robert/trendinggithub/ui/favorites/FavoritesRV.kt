@@ -10,12 +10,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.vacareanu.robert.trendinggithub.FavoritesViewModelFactory
-
 import com.vacareanu.robert.trendinggithub.R
 import com.vacareanu.robert.trendinggithub.model.Repository
-import kotlinx.android.synthetic.main.fragment_favorites_rv.*
 
 /**
  * A simple [Fragment] subclass.

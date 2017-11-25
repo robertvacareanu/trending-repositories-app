@@ -54,7 +54,7 @@ class GithubTrendsRV : Fragment() {
                 activity.makeToast("Heart clicked")
 
                 val isFav = viewModel.repositories.value!![position].isFavorite
-                if(isFav) {
+                if (isFav) {
                     val emptyHeartAnimation = AnimatedVectorDrawableCompat.create(context, R.drawable.heart_full_to_empty)
                     heart.setImageDrawable(emptyHeartAnimation)
                     emptyHeartAnimation?.start()
