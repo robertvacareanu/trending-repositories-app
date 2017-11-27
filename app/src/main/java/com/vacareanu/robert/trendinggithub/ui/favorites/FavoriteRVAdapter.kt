@@ -9,7 +9,9 @@ import android.widget.TextView
 import com.vacareanu.robert.trendinggithub.R
 import com.vacareanu.robert.trendinggithub.model.Repository
 
-
+/**
+ * TODO Merge similar adapters
+ */
 class FavoriteRVAdapter : RecyclerView.Adapter<FavoriteRVAdapter.FavoriteViewHolder>() {
 
     private var repositories: List<out Repository>? = null
@@ -33,7 +35,7 @@ class FavoriteRVAdapter : RecyclerView.Adapter<FavoriteRVAdapter.FavoriteViewHol
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): FavoriteViewHolder = FavoriteViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.view_favorite_item, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): FavoriteViewHolder = FavoriteViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.view_repository_item, parent, false))
 
     override fun onBindViewHolder(holder: FavoriteViewHolder?, position: Int) {
         holder?.url?.text = repositories!![position].url
