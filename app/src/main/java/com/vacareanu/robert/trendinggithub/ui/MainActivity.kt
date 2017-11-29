@@ -71,13 +71,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    inline fun <reified T : BaseViewModel> viewModel(): T {
-        return ViewModelProviders.of(this).get(T::class.java)
-    }
+    inline fun <reified T : BaseViewModel> viewModel(): T = ViewModelProviders.of(this).get(T::class.java)
 
-    inline fun <reified T : BaseViewModel> viewModelWithFactory(factory: ViewModelProvider.Factory): T {
-        return ViewModelProviders.of(this, factory).get(T::class.java)
-    }
+
+    inline fun <reified T : BaseViewModel> viewModelWithFactory(factory: ViewModelProvider.Factory): T = ViewModelProviders.of(this, factory).get(T::class.java)
+
 
     override fun handleRepoClick(repo: Repository) {
         val detailsViewModel = ViewModelProviders.of(this).get(DetailsViewModel::class.java)

@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.vacareanu.robert.trendinggithub.R
+import com.vacareanu.robert.trendinggithub.TrendsViewModelFactory
 import com.vacareanu.robert.trendinggithub.makeToast
 import com.vacareanu.robert.trendinggithub.model.Repository
 
@@ -78,7 +79,7 @@ class GithubTrendsRV : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(activity).get(TrendsViewModel::class.java)
+        viewModel = ViewModelProviders.of(activity, TrendsViewModelFactory(context.applicationContext)).get(TrendsViewModel::class.java)
         viewModel.repositories.observe(this, Observer<List<Repository>> { t: List<Repository>? ->
             if (t == null) {
 

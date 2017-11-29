@@ -1,13 +1,11 @@
 package com.vacareanu.robert.trendinggithub.ui.repositories
 
-import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MediatorLiveData
 import android.arch.lifecycle.MutableLiveData
-import android.arch.persistence.room.Room
 import android.util.Log
-import com.vacareanu.robert.trendinggithub.db.AppDatabase
+import com.vacareanu.robert.trendinggithub.BaseViewModel
+import com.vacareanu.robert.trendinggithub.db.RepositoryDao
 import com.vacareanu.robert.trendinggithub.model.Repository
 import com.vacareanu.robert.trendinggithub.network.ApiResponse
 import com.vacareanu.robert.trendinggithub.network.GithubService
@@ -16,7 +14,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class TrendsViewModel(application: Application) : AndroidViewModel(application) {
+class TrendsViewModel(val repository: RepositoryDao) : BaseViewModel("TrendsViewModel") {
 
 
     val repositories by lazy { MediatorLiveData<List<Repository>>() }
@@ -26,7 +24,7 @@ class TrendsViewModel(application: Application) : AndroidViewModel(application) 
     // Responsible for merging data in db and data from network
     init {
         Log.v("TVM", "Init")
-        roomRepositories = Room.databaseBuilder(application.applicationContext, AppDatabase::class.java, "database-name").build().repositoryDao().findAll()
+        roomRepositories = repository.findAll()
         networkRepositories = transformationFromApiResponseToList(
                 GithubService.githubNetwork.create(GithubService::class.java)
                         .getRepositories("language=kotlin+created%3A>${SimpleDateFormat("yyyy-MM-dd")
