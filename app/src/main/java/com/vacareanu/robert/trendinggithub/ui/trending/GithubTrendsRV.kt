@@ -86,6 +86,7 @@ class GithubTrendsRV : Fragment() {
             } else {
                 adapter.setRepositories(t)
             }
+            adapter.notifyDataSetChanged()
         })
     }
 

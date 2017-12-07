@@ -2,6 +2,7 @@ package com.vacareanu.robert.trendinggithub.ui.favorites
 
 import android.arch.lifecycle.LiveData
 import com.vacareanu.robert.trendinggithub.BaseViewModel
+import com.vacareanu.robert.trendinggithub.JobExecutor
 import com.vacareanu.robert.trendinggithub.db.RepositoryDao
 import com.vacareanu.robert.trendinggithub.model.Repository
 import com.vacareanu.robert.trendinggithub.ui.repositories.GithubTrendsRV
@@ -22,8 +23,10 @@ class FavoritesViewModel(val repository: RepositoryDao) : BaseViewModel("TrendsV
 
     }
 
-    fun handleHeartClick(position: Int, view: GithubTrendsRV.OnGithubTrendsRVInteractionListener) {
-
+    fun handleHeartClick(position: Int) {
+        JobExecutor.execute {
+            repository.delete(repository = repositories.value!![position])
+        }
     }
 
 

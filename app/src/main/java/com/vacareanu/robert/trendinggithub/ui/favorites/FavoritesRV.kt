@@ -63,7 +63,7 @@ class FavoritesRV : Fragment(), FavoriteView {
                 heart.setImageDrawable(emptyHeartAnimation)
                 emptyHeartAnimation?.start()
 //                callback?.handleHeartClick(viewModel.repositories.value!![position])
-                viewModel.handleHeartClick(position, callback!!)
+                viewModel.handleHeartClick(position)
             }
         }
 

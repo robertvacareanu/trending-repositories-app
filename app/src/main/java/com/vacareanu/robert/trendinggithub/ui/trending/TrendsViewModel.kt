@@ -30,9 +30,7 @@ class TrendsViewModel(val repository: RepositoryDao) : BaseViewModel("TrendsView
                         .getRepositories("language=kotlin+created%3A>${SimpleDateFormat("yyyy-MM-dd")
                                 .format(Date().time - 14 * 24 * 60 * 60 * 1000)}", "stars")
         )
-        roomRepositories.value?.forEach {
-            Log.v("TVM", "${it.isFavorite}, ${it.url}")
-        }
+
         repositories.addSource(networkRepositories) { t: List<Repository>? ->
             t?.let {
                 t
@@ -42,13 +40,17 @@ class TrendsViewModel(val repository: RepositoryDao) : BaseViewModel("TrendsView
             repositories.value = t
         }
         repositories.addSource(roomRepositories) { t: List<Repository>? ->
+            val repositoriesResult = repositories.value.orEmpty()
             t?.let {
-                t.forEach { r ->
-                    r.isFavorite = true
-                    networkRepositories.value?.firstOrNull { r.url == it.url }?.let { it.isFavorite = true }
-
+                repositoriesResult.forEach {
+                    it.isFavorite = false
                 }
+                t.forEach { r ->
+                    repositoriesResult.firstOrNull { r.url == it.url }?.let { it.isFavorite = true }
+                }
+                repositoriesResult.forEach { if (it.isFavorite) Log.v("TVM", "Is favorite: ${it.url}") }
             }
+            repositories.value = repositoriesResult
         }
 
 
@@ -63,6 +65,5 @@ class TrendsViewModel(val repository: RepositoryDao) : BaseViewModel("TrendsView
         }
         return result
     }
-
 
 }
